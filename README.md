@@ -51,7 +51,7 @@ There are several different versions [Visual Studio Downlaod]("https://www.visua
 >Select ***New Project*** from the ***File*** menu to open the ***New Project*** dialog. If you select the ***Installed*** and open ***Other Project Types***. You 
 will see the ***Blank Solution*** project.Select this project type. As shown in below
 
->![Figure 1](http://img.blog.csdn.net/20160926133130631?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+>![Figure 1](/Materials/ch01/ch01-01.png)
 
 
 > Set the name of the solution to **Tutorial** and click the ***Ok*** button to continue.Then, right click the Solution in Solution Explorer, Select ***Add*** and click
