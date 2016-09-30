@@ -5,6 +5,7 @@
 
 * [About starting this tutorial](#start)
 * [Create your first application](#create)
+* [Domain with EntityFramework](#domain)
 
 
 
@@ -40,8 +41,8 @@ There are several different versions [Visual Studio Downlaod]("https://www.visua
 ,Sql Sever,NodeJs, you are ready to go.
 
 >### Summary
->In this chaper, I explained the structure of this tutorial and the software that you will require to follow the examples.
-    In next chaper, you'll see how to start a project in a expandable way.
+>In this chapter, I explained the structure of this tutorial and the software that you will require to follow the examples.
+    In next chapter, you'll see how to start a project in a expandable way.
 
 
 ## <a name="create">Create Your First Application
@@ -76,7 +77,8 @@ button to create **WebAPI** project as shown in below.
 
 >![Figure 6](/Materials/ch01/ch01-06.png)
 
->Last, create **Domain** project for data access and operation. Select ***Visual C#*** and open ***Class Library***, click ***OK*** button as shown in below
+>Last, create **Domain** project for data access and operation. Select ***Visual C#*** and open ***Class Library***, click ***OK*** button as shown in below.Then all of
+the preparations are done, you are ready to code now.
 
 >![Figure 5](/Materials/ch01/ch01-05.png)
 
@@ -87,5 +89,13 @@ button to create **WebAPI** project as shown in below.
 >So far so good. In this chapter I told you how to create a blank solution, MVC template, WebAPI template in steps. And also the reason why we need to create three projects
 to build the application.Next chapter I will show how to use **Code First** Pattern with EntityFramework 6 to create your models and database in Sql Sever. Moreover, how to 
 use **Migration** to fulfill the developing extensible in database cases.
+
+
+## <a name="domain">Domain With EntityFramework
+
+In this chapter,I am going to show you how to use **Nuget** to manage your tools during the developing process.In addition your first model in **Code First** Pattern,
+and also the basic commands in **Package Manager Console** for **Migration** in EntityFramework,
+
+>### Using Nuget to Install EntityFramework
 
 
