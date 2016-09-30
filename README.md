@@ -71,4 +71,23 @@ contains MVC5 reference.Click the ***OK*** button to create the new project.
 
 >![Figure 4](/Materials/ch01/ch01-04.png)
 
+>Next, create another new project which is named **WebAPI**, the same steps like you create **WebUI** project, except you check the ***Web API*** instead. Click the ***OK***
+button to create **WebAPI** project as shown in below.
+
+>![Figure 6](/Materials/ch01/ch01-06.png)
+
+>Last, create **Domain** project for data access and operation. Select ***Visual C#*** and open ***Class Library***, click ***OK*** button as shown in below
+
+>![Figure 5](/Materials/ch01/ch01-05.png)
+
+>##### [Tip] You may wonder why I need to create three projects to build one single page application, does one project make all features work?The answer is yes.
+But as you start to build application, you need to make the whole project as clear as possible.Keep in mind that the code should be readable by **People** not **Computer**.
+So create three projects seems like you arrange different type of stuff into drawers organized.You and others will find what he wants quickly and accurately.
+
+>### Summary
+
+>So far so good. In this chapter I told you how to create a blank solution, MVC template, WebAPI template in steps. And also the reason why we need to create three projects
+to build the application.Next chapter I will show how to use **Code First** Pattern with EntityFramework 6 to create your models and database in Sql Sever. Moreover, how to 
+use **Migration** to fulfill the developing extensible in database cases.
+
 
