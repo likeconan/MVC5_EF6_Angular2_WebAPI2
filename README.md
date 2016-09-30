@@ -80,9 +80,7 @@ button to create **WebAPI** project as shown in below.
 
 >![Figure 5](/Materials/ch01/ch01-05.png)
 
->##### [Tip] You may wonder why I need to create three projects to build one single page application, does one project make all features work?The answer is yes.
-But as you start to build application, you need to make the whole project as clear as possible.Keep in mind that the code should be readable by **People** not **Computer**.
-So create three projects seems like you arrange different type of stuff into drawers organized.You and others will find what he wants quickly and accurately.
+> **[Tip:]** You may wonder why I need to create three projects to build one single page application, does one project make all features work?The answer is yes.But as you start to build application, you need to make the whole project as clear as possible.Keep in mind that the code should be readable by **People** not **Computer**.So create three projects seems like you arrange different type of stuff into drawers organized.You and others will find what he wants quickly and accurately.
 
 >### Summary
 
