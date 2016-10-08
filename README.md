@@ -115,8 +115,6 @@ want to run your application in a new development situation, the nuget will help
 >*Code* The Contents of the Student.cs File
 
 `using System.ComponentModel.DataAnnotations;
-
-
 namespace Domain.Entities
 {
     public class Student
