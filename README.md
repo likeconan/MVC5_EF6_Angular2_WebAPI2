@@ -153,6 +153,24 @@ want to run your application in a new development situation, the nuget will help
 
 >Then put the following connectionStrings into *Web.config* file in *WebUI* project.(**Caution** I have to split  the value of *connectString* atrribute
 across mulitple lines to fit it on the limited page,but its important to put everything on a single line in the *Web.config* file)
+		
 		<connectionStrings>
     			<add name="TutorialEfDbContext" connectionString="Data Source=(localdb)\mssqllocaldb;Initial Catalog=TutorialEfDbContext;Integrated Security=True;MultipleActiveResultSets=True" providerName="System.Data.SqlClient" />
   		</connectionStrings>
+
+>Last but not least, using **Migration** command to create database in sqlsever.Open the *Package Manager Console* dialog again and make sure the default project is *Domain*,
+and then successively execute the following commands.
+
+>![Figure 8](/Materials/ch01/ch01-08.png)
+
+>-   `Enable-Migrations`   *after the execution you will find that there is a Migrations folder created and Configuration file created under that folder*
+-   `Add-Migration Initial`  *after the execution you will find that there is a named Initial suffix class file.Open the file you will see the Up and Down method
+which represents the execution and rollback operation to the SqlSever, in other words it means creating the Student table and droping the Student table*    
+-   `Update-Database -Verbose`  *after the execution when you open the SqlSever, you will find there is a database called TutorialEfDbContext,a table called Students and also
+a table called MigrationHistory.*
+
+>![Figure 9](/Materials/ch01/ch01-09.png)
+
+> **[Tip:]** Once you enabled the migration to the project you don't need to do it again.The MigrationHistory table is used for keeping track to the changes you did to the models
+ so that you can rollback or reproduce every change you want. In future I will tell you more operations with Migration so that it satisfies all cases you may need.
+
