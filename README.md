@@ -111,7 +111,8 @@ and also the basic commands in **Package Manager Console** for **Migration** in 
 want to run your application in a new development situation, the nuget will help you download all the tools again if the new development situation does not own them.
 
 >### Create Model Classes and Implement Code First Pattern
-> I added a class file to the *Entities* project folder callded *Student.cs* and set the content as shown in below. 
+> I added a class file to the *Entities* project folder called *Student.cs* and set the content as shown in below. 
+
 >*Code* The Contents of the Student.cs File
 
 		using System.ComponentModel.DataAnnotations;
@@ -127,3 +128,31 @@ want to run your application in a new development situation, the nuget will help
         		public bool Sex { get; set; }
     		}
 		}
+
+>The next important thing you need to do is creating **DbContext**. Add a class file under the *Domian* project called *TutorialEfDbContext* and set the content as shown in below.
+
+>*Code* The Contents of the TutorialEfDbContext.cs File
+		using System.Data.Entity;
+		using Domain.Entities;
+
+
+		namespace Domain
+		{
+    		public class TutorialEfDbContext:DbContext
+    		{
+        		// base("TutorialEfDbContext") is very important,because the string "TutorialEfDbContext" in it must be the same as connectionStrings name in the config file 
+        		public TutorialEfDbContext():base("TutorialEfDbContext")
+        		{
+            		Configuration.ProxyCreationEnabled = false; //disable proxy
+            		Configuration.LazyLoadingEnabled = false; //disable lazy load
+        		}
+			//When you want to implement the entity into sql sever as a table, you need to add the Model as property in DbContext
+        		public DbSet<Student> Student { get; set; }
+    		}
+		}
+
+>Then put the following connectionStrings into *Web.config* file in *WebUI* project.(**Caution** I have to split  the value of *connectString* atrribute
+across mulitple lines to fit it on the limited page,but its important to put everything on a single line in the *Web.config* file)
+		<connectionStrings>
+    			<add name="TutorialEfDbContext" connectionString="Data Source=(localdb)\mssqllocaldb;Initial Catalog=TutorialEfDbContext;Integrated Security=True;MultipleActiveResultSets=True" providerName="System.Data.SqlClient" />
+  		</connectionStrings>
