@@ -174,3 +174,11 @@ a table called MigrationHistory.*
 > **[Tip:]** Once you enabled the migration to the project you don't need to do it again.The MigrationHistory table is used for keeping track to the changes you did to the models
  so that you can rollback or reproduce every change you want. In future I will tell you more operations with Migration so that it satisfies all cases you may need.
 
+### Summary 
+
+>In this chapter I told you how to use nuget *Install-Package* to manage your tools and also the essential commands to migration.And you may find that it's easy to create
+a database in Sqlsever when using **Code First Pattern**,you only need to take the #C code into consideration.That's one of the important benefits to use that when you start
+a complete new application.And the reason that you need to use **Migration** is that when trying to develop an application you will change the models inevitablely, then it
+will help you update the database without losing the data you have created.
+
+>In next chapter I will show you how to use **Dependency Injection(DI)** to create loosely coupled systems in  WebAPI. And aslo some basic applies in Web API 2.
