@@ -24,7 +24,7 @@ and a working knowledge of C# and Javascript. Don't worry if you are a beginner,
 
 >#### Part 1:Server-Side Development
 
->I start this tutorial by creating a real online store single page application so that you know how to create, update database in sql sever by using Code
+>I start this tutorial by creating a real online school management single page application so that you know how to create, update database in sql sever by using Code
 First Pattern in EntityFramework 6. And also you will touch on major features of  the ASP.NET MVC Framework and WebAPI2.
 
 >#### Part 2:Client-Side Development
@@ -65,7 +65,7 @@ type as shown in below
 
 >![Figure 3](/Materials/ch01/ch01-03.png)
 
->Set the name of the project to **WebUI**, it will contains all the features of MVC and Angular we use for online store. Click the ***OK*** button to continue. You will see
+>Set the name of the project to **WebUI**, it will contains all the features of MVC and Angular we use for our application. Click the ***OK*** button to continue. You will see
 another dialog box, shown in below, which asks you to set the initial content for ASP.NET project.To keep things simple and tell you the knowledge from beginning:select the
 ***Empty*** option and check the ***MVC*** box in the ***Add folders and core references*** section, as shown in the figure.This will create basic web application which
 contains MVC5 reference.Click the ***OK*** button to create the new project. 
@@ -94,8 +94,38 @@ use **Migration** to fulfill the developing extensible in database cases.
 ## <a name="domain">Domain With EntityFramework
 
 In this chapter,I am going to show you how to use **Nuget** to manage your tools during the developing process.In addition your first model in **Code First** Pattern,
-and also the basic commands in **Package Manager Console** for **Migration** in EntityFramework,
+and also the basic commands in **Package Manager Console** for **Migration** in EntityFramework.
 
 >### Using Nuget to Install EntityFramework
+>Open ***Tools***,select ***Nuget Package Manager*** and click ***Package Manager Console***,then you will see the Package Manager Console dialog opened as shown in below.
+
+>![Figure 6](/Materials/ch01/ch01-07.png)
+
+>Next execute these commands respectively.
+
+``Install-Package EntityFramework Domain`` 
+
+``Install-Package EntityFramework WebUI``
+
+> **[Tip:]** You can also install the package by clicking on ***Manage Nuget Packages for Solution***.The nuget package helps you to manage the tools you need. When you 
+want to run your application in a new development situation, the nuget will help you download all the tools again if the new development situation does not own them.
+
+>### Create Model Classes and Implement Code First Pattern
+> I added a class file to the *Entities* project folder callded *Student.cs* and set the content as shown in below. 
+>*Code* The Contents of the Student.cs File
+
+`using System.ComponentModel.DataAnnotations;
 
 
+namespace Domain.Entities
+{
+    public class Student
+    {
+        // Every Model must has its Key attribute, it represents the Primary Key in Sql Server
+        [Key]
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public bool Sex { get; set; }
+    }
+}`
