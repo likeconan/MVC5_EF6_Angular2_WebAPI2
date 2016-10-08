@@ -13,6 +13,7 @@ namespace Domain
             Configuration.LazyLoadingEnabled = false; //disable lazy load
         }
 
+        //When you want to implement the entity into sql sever as a table, you need to add the Model as property in DbContext
         public DbSet<Student> Student { get; set; }
     }
 }
