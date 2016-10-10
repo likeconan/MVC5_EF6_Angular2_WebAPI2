@@ -6,7 +6,7 @@
 * [About starting this tutorial](#start)
 * [Create your first application](#create)
 * [Domain with EntityFramework](#domain)
-
+* [WebAPI with Ninject](#webapi)
 
 
 ## <a name="start">About Starting this Tutorial
@@ -174,7 +174,7 @@ a table called MigrationHistory.*
 > **[Tip:]** Once you enabled the migration to the project you don't need to do it again.The MigrationHistory table is used for keeping track to the changes you did to the models
  so that you can rollback or reproduce every change you want. In future I will tell you more operations with Migration so that it satisfies all cases you may need.
 
-### Summary 
+>### Summary 
 
 >In this chapter I told you how to use nuget *Install-Package* to manage your tools and also the essential commands to migration.And you may find that it's easy to create
 a database in Sqlsever when using **Code First Pattern**,you only need to take the #C code into consideration.That's one of the important benefits to use that when you start
@@ -182,3 +182,26 @@ a complete new application.And the reason that you need to use **Migration** is 
 will help you update the database without losing the data you have created.
 
 >In next chapter I will show you how to use **Dependency Injection(DI)** to create loosely coupled systems in  WebAPI. And aslo some basic applies in Web API 2.
+
+## <a name="domain">WebAPI With Ninject
+
+>As you develop an apllication, in an ideal situation,each component knows nothing about any other componenet and only deals with other areas of application throught
+abstract interfaces.This is known as **loose coupling**,and it makes testing and modifying applications easier.And what I need is a way to get objects that implement
+an interface without having to create the object directly.The solution to this problem is called **dependency injection(DI)**,also known as **Inversion of Control(IoC)**
+
+> **[Tip:]** Because this tutorial is all about using tools to create Single Page Application, I will not take more time on explaining DI.But you can check the details from
+[Wiki](https://en.wikipedia.org/wiki/Dependency_injection) or google other instructions about it.Don't worry if you don't understand DI right now,you can learn it by using it and
+and imitating the code pattern to get the points of DI in future.
+
+>### Install Ninject In WebAPI
+
+>Select ***Package Manager Console*** in Visual Studio to open the NuGet command line and enter the following commands:
+		Install-Package Ninject WebAPI
+		Install-Package Ninject.Web.Common WebAPI
+		Install-Package Ninject.Web.WebApi WebAPI
+		Install-Package Ninject.Web.WebApi.WebHost WebAPI
+
+>After install all of the packages.You will see there is a *NinjectWebCommon.cs* file created in App_Start project directory.In this class, check the *RegisterService* method which
+is used for resolving your dependency injection.
+
+> **[Tip:]** Don't worry that you don't understand what has been done in ninject right now.
