@@ -190,7 +190,7 @@ abstract interfaces.This is known as **loose coupling**,and it makes testing and
 an interface without having to create the object directly.The solution to this problem is called **dependency injection(DI)**,also known as **Inversion of Control(IoC)**
 
 > **[Tip:]** Because this tutorial is all about using tools to create Single Page Application, I will not take more time on explaining DI.But you can check the details from
-[Wiki](https://en.wikipedia.org/wiki/Dependency_injection){:target="_blank"} or google other instructions about it.Don't worry if you don't understand DI right now,you can learn it by using it and
+<a href="https://en.wikipedia.org/wiki/Dependency_injection" target="_blank">Wiki</a> or google other instructions about it.Don't worry if you don't understand DI right now,you can learn it by using it and
 and imitating the code pattern to get the points of DI in future.
 
 >### Install Ninject In WebAPI
