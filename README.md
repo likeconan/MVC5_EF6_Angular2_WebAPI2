@@ -196,6 +196,7 @@ and imitating the code pattern to get the points of DI in future.
 >### Install Ninject In WebAPI
 
 >Select ***Package Manager Console*** in Visual Studio to open the NuGet command line and enter the following commands:
+		
 		Install-Package Ninject WebAPI
 		Install-Package Ninject.Web.Common WebAPI
 		Install-Package Ninject.Web.WebApi WebAPI
