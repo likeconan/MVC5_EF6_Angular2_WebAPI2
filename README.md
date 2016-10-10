@@ -205,4 +205,5 @@ and imitating the code pattern to get the points of DI in future.
 >After install all of the packages.You will see there is a *NinjectWebCommon.cs* file created in App_Start project directory.In this class, check the *RegisterService* method which
 is used for resolving your dependency injection.
 
-> **[Tip:]** Don't worry that you don't understand what has been done in ninject right now.
+> **[Tip:]** Don't worry that you don't understand what has been done in Ninject right now.The only things you need to care about is in *RegisterService* method, and you can check
+more details in  <a href="http://www.ninject.org/" target="_blank">Ninject</a>.
