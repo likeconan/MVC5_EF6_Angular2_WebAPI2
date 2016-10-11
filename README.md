@@ -49,7 +49,7 @@ There are several different versions [Visual Studio Downlaod]("https://www.visua
 
 
 >### Create a Blank Solution
->Select ***New Project*** from the ***File*** menu to open the ***New Project*** dialog. If you select the ***Installed*** and open ***Other Project Types***. You 
+>Select ***New Project*** from the ***File*** menu to open the ***New Project*** dialog. If you select the ***Installed*** and open ***Other Project Types***. You
 will see the ***Blank Solution*** project.Select this project type. As shown in below
 
 >![Figure 1](/Materials/ch01/ch01-01.png)
@@ -68,7 +68,7 @@ type as shown in below
 >Set the name of the project to **WebUI**, it will contains all the features of MVC and Angular we use for our application. Click the ***OK*** button to continue. You will see
 another dialog box, shown in below, which asks you to set the initial content for ASP.NET project.To keep things simple and tell you the knowledge from beginning:select the
 ***Empty*** option and check the ***MVC*** box in the ***Add folders and core references*** section, as shown in the figure.This will create basic web application which
-contains MVC5 reference.Click the ***OK*** button to create the new project. 
+contains MVC5 reference.Click the ***OK*** button to create the new project.
 
 >![Figure 4](/Materials/ch01/ch01-04.png)
 
@@ -87,7 +87,7 @@ the preparations are done, you are ready to code now.
 >### Summary
 
 >So far so good. In this chapter I told you how to create a blank solution, MVC template, WebAPI template in steps. And also the reason why we need to create three projects
-to build the application.Next chapter I will show how to use **Code First** Pattern with EntityFramework 6 to create your models and database in Sql Sever. Moreover, how to 
+to build the application.Next chapter I will show how to use **Code First** Pattern with EntityFramework 6 to create your models and database in Sql Sever. Moreover, how to
 use **Migration** to fulfill the developing extensible in database cases.
 
 
@@ -103,15 +103,15 @@ and also the basic commands in **Package Manager Console** for **Migration** in 
 
 >Next execute these commands respectively.
 
-``Install-Package EntityFramework Domain`` 
+``Install-Package EntityFramework Domain``
 
 ``Install-Package EntityFramework WebUI``
 
-> **[Tip:]** You can also install the package by clicking on ***Manage Nuget Packages for Solution***.The nuget package helps you to manage the tools you need. When you 
+> **[Tip:]** You can also install the package by clicking on ***Manage Nuget Packages for Solution***.The nuget package helps you to manage the tools you need. When you
 want to run your application in a new development situation, the nuget will help you download all the tools again if the new development situation does not own them.
 
 >### Create Model Classes and Implement Code First Pattern
-> I added a class file to the *Entities* project folder called *Student.cs* and set the content as shown in below. 
+> I added a class file to the *Entities* project folder called *Student.cs* and set the content as shown in below.
 
 >*Code* The Contents of the Student.cs File
 
@@ -140,7 +140,7 @@ want to run your application in a new development situation, the nuget will help
 		{
     		public class TutorialEfDbContext:DbContext
     		{
-        		// base("TutorialEfDbContext") is very important,because the string "TutorialEfDbContext" in it must be the same as connectionStrings name in the config file 
+        		// base("TutorialEfDbContext") is very important,because the string "TutorialEfDbContext" in it must be the same as connectionStrings name in the config file
         		public TutorialEfDbContext():base("TutorialEfDbContext")
         		{
             		Configuration.ProxyCreationEnabled = false; //disable proxy
@@ -153,7 +153,7 @@ want to run your application in a new development situation, the nuget will help
 
 >Then put the following connectionStrings into *Web.config* file in *WebUI* project.(**Caution** I have to split  the value of *connectString* atrribute
 across mulitple lines to fit it on the limited page,but its important to put everything on a single line in the *Web.config* file)
-		
+
 		<connectionStrings>
     			<add name="TutorialEfDbContext" connectionString="Data Source=(localdb)\mssqllocaldb;Initial Catalog=TutorialEfDbContext;Integrated Security=True;MultipleActiveResultSets=True" providerName="System.Data.SqlClient" />
   		</connectionStrings>
@@ -174,7 +174,7 @@ a table called MigrationHistory.*
 > **[Tip:]** Once you enabled the migration to the project you don't need to do it again.The MigrationHistory table is used for keeping track to the changes you did to the models
  so that you can rollback or reproduce every change you want. In future I will tell you more operations with Migration so that it satisfies all cases you may need.
 
->### Summary 
+>### Summary
 
 >In this chapter I told you how to use nuget *Install-Package* to manage your tools and also the essential commands to migration.And you may find that it's easy to create
 a database in Sqlsever when using **Code First Pattern**,you only need to take the #C code into consideration.That's one of the important benefits to use that when you start
@@ -196,7 +196,7 @@ and imitating the code pattern to get the points of DI in future.
 >### Install Ninject In WebAPI
 
 >Select ***Package Manager Console*** in Visual Studio to open the NuGet command line and enter the following commands:
-		
+
 		Install-Package Ninject WebAPI
 		Install-Package Ninject.Web.Common WebAPI
 		Install-Package Ninject.Web.WebApi WebAPI
@@ -207,3 +207,103 @@ is used for resolving your dependency injection.
 
 > **[Tip:]** Don't worry that you don't understand what has been done in Ninject right now.The only things you need to care about is in *RegisterService* method, and you can check
 more details in  <a href="http://www.ninject.org/" target="_blank">Ninject</a>.
+
+>### Create Basic Crud In Domain
+
+>I added two project folders under Domain project, one is called *Abstract* which is made of interfaces, the other is called *Concrete* which is made of extension classes.
+As you know mostly we would get all entities, get one entity by its id,update one entity, add one and delete one, they are the basic operations.So I added an interface
+called *IBasicCrud* in *Abstract* folder. the content of it is shown in below.
+
+>*Code* The Contents of the IBasicCrud.cs File
+
+		using System.Collections.Generic;
+		namespace Domain.Abstract
+		{
+    		public interface IBasicCrud<T>
+    		{
+        		List<T> GetAll();
+        		T Get(string id);
+        		bool Update(string id, T entity);
+        		bool Add(T entity);
+        		bool Delete(string id);
+    		}
+		}
+
+>Then I added interface called *IStudentCrud* which implements *IBasicCrud*,the contents shown in below:
+
+>*Code* The Contents of IStudentCrud.cs File
+
+		using Domain.Entities;
+		namespace Domain.Abstract
+		{
+    		public interface IStudentCrud : IBasicCrud<Student>
+    		{
+        		//add custom method you need in here
+    		}
+		}
+
+>Last thing is creating the StudentCrud Class in Concrete project folder, then contents shown in below:
+
+>*Code* The Contents of StudentCrud.cs File
+
+		using System.Collections.Generic;
+		using System.Linq;
+		using Domain.Abstract;
+		using Domain.Entities;
+
+		namespace Domain.Concrete
+		{
+		public class StudentCrud : IStudentCrud
+		{
+				public List<Student> GetAll()
+				{
+						using (var context = new TutorialEfDbContext())
+						{
+								return context.Student.ToList();
+						}
+				}
+
+				public Student Get(string id)
+				{
+						using (var context = new TutorialEfDbContext())
+						{
+								return context.Student.Find(id);
+						}
+				}
+
+				public bool Update(string id, Student entity)
+				{
+						using (var context = new TutorialEfDbContext())
+						{
+								var res = context.Student.Find(id);
+								res.Age = entity.Age;
+								res.Name = entity.Name;
+								res.Sex = entity.Sex;
+								return context.SaveChanges() > 0;
+						}
+				}
+
+				public bool Add(Student entity)
+				{
+						using (var context=new TutorialEfDbContext())
+						{
+								context.Student.Add(entity);
+								return context.SaveChanges() > 0;
+						}
+				}
+
+				public bool Delete(string id)
+				{
+						using (var context=new TutorialEfDbContext())
+						{
+								var res=context.Student.Find(id);
+								context.Student.Remove(res);
+								return context.SaveChanges() > 0;
+						}
+				}
+		}
+		}
+
+>So far so good,you have created basic infrastructure with the BasicCrud interface.And here is the thing that you need to keep in mind.
+When you find out there are some methods you would redo many times,you should refactor it into implementation so that you dont need to
+write the methods again. Thats one of the important points fro Object-Oriented Programming.

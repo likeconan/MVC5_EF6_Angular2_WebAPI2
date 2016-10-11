@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IBasicCrud.cs" />
+    <Compile Include="Abstract\IStudentCrud.cs" />
+    <Compile Include="Concrete\StudentCrud.cs" />
     <Compile Include="Entities\Student.cs" />
     <Compile Include="Migrations\201609280548251_Initial.cs" />
     <Compile Include="Migrations\201609280548251_Initial.Designer.cs">
@@ -67,6 +70,7 @@
       <DependentUpon>201609280548251_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
