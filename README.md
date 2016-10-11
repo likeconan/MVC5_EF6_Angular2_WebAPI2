@@ -113,7 +113,7 @@ want to run your application in a new development situation, the nuget will help
 >### Create Model Classes and Implement Code First Pattern
 > I added a class file to the *Entities* project folder called *Student.cs* and set the content as shown in below.
 
->*Code* The Contents of the Student.cs File
+>**[Code:]** The Contents of the Student.cs File
 
 		using System.ComponentModel.DataAnnotations;
 		namespace Domain.Entities
@@ -131,7 +131,7 @@ want to run your application in a new development situation, the nuget will help
 
 >The next important thing you need to do is creating **DbContext**. Add a class file under the *Domian* project called *TutorialEfDbContext* and set the content as shown in below.
 
->*Code* The Contents of the TutorialEfDbContext.cs File
+>**[Code:]** The Contents of the TutorialEfDbContext.cs File
 		using System.Data.Entity;
 		using Domain.Entities;
 
@@ -214,7 +214,7 @@ more details in  <a href="http://www.ninject.org/" target="_blank">Ninject</a>.
 As you know mostly we would get all entities, get one entity by its id,update one entity, add one and delete one, they are the basic operations.So I added an interface
 called *IBasicCrud* in *Abstract* folder. the content of it is shown in below.
 
->*Code* The Contents of the IBasicCrud.cs File
+>**[Code:]** The Contents of the IBasicCrud.cs File
 
 		using System.Collections.Generic;
 		namespace Domain.Abstract
@@ -231,7 +231,7 @@ called *IBasicCrud* in *Abstract* folder. the content of it is shown in below.
 
 >Then I added interface called *IStudentCrud* which implements *IBasicCrud*,the contents shown in below:
 
->*Code* The Contents of IStudentCrud.cs File
+>**[Code:]** The Contents of IStudentCrud.cs File
 
 		using Domain.Entities;
 		namespace Domain.Abstract
@@ -244,7 +244,7 @@ called *IBasicCrud* in *Abstract* folder. the content of it is shown in below.
 
 >Last thing is creating the StudentCrud Class in Concrete project folder, then contents shown in below:
 
->*Code* The Contents of StudentCrud.cs File
+>**[Code:]** The Contents of StudentCrud.cs File
 
 		using System.Collections.Generic;
 		using System.Linq;
