@@ -311,4 +311,24 @@ called *IBasicCrud* in *Abstract* folder. the content of it is shown in below.
 
 >So far so good,you have created basic infrastructure with the BasicCrud interface.And here is the thing that you need to keep in mind.
 When you find out there are some methods you would redo many times,you should refactor it into implementation so that you dont need to
-write the methods again. Thats one of the important points fro Object-Oriented Programming.
+write the methods again. Thats one of the important points for Object-Oriented Programming.
+
+>### Binding Domain to WebAPI
+
+>You already created basic data manipulations in Domain. The next you want to do is definitely using web api to apply them through browser url.
+First of all, add the Domain as a reference in *WebAPI Project*, right click on *Reference* in *WebAPI Project* and then click on *add reference*
+You will see a dialog says *Reference Manager - WebAPI*, select Projects - Solution and check on the Domain Project and click Ok as shown in below.
+
+>![Figure 10](/Materials/ch01/ch01-10.png)
+
+>Then I opened the NinjectWebCommon.cs File in *App_Start folder* and added this content in  RegisterServices method as shown:
+
+    private static void RegisterServices(IKernel kernel)
+    {
+           kernel.Bind<IStudentCrud>().To<StudentCrud>();
+    }
+
+>**[Tip:] The RegisterServices method is used for adding binding so that you can use **Constructor Dependency Injection** in API Controller. Mostly you
+will use just like my code here, I will show the other types of binding later when we use or you can check them out in <a href="http://www.ninject.org/" target="_blank">Ninject</a>
+
+>### Using RESTful API

@@ -1,3 +1,6 @@
+using Domain.Abstract;
+using Domain.Concrete;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(WebAPI.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(WebAPI.App_Start.NinjectWebCommon), "Stop")]
 
@@ -61,6 +64,7 @@ namespace WebAPI.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<IStudentCrud>().To<StudentCrud>();
         }        
     }
 }
