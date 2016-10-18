@@ -112,8 +112,17 @@ and also the basic commands in **Package Manager Console** for **Migration** in 
 
 ``Install-Package EntityFramework WebUI``
 
+``Install-Package EntityFramework WebAPI``
+
 > **[Tip:]** You can also install the package by clicking on ***Manage Nuget Packages for Solution***.The nuget package helps you to manage the tools you need. When you
 want to run your application in a new development situation, the nuget will help you download all the tools again if the new development situation does not own them.
+
+>Then put the following connectionStrings into *Web.config* files both in *WebUI* project and *WebAPI* project.(**Caution** I have to split  the value of *connectString* atrribute
+across mulitple lines to fit it on the limited page,but its important to put everything on a single line in the *Web.config* file)
+
+		<connectionStrings>
+    			<add name="TutorialEfDbContext" connectionString="Data Source=(localdb)\mssqllocaldb;Initial Catalog=TutorialEfDbContext;Integrated Security=True;MultipleActiveResultSets=True" providerName="System.Data.SqlClient" />
+  		</connectionStrings>
 
 >### Create Model Classes and Implement Code First Pattern
 > I added a class file to the *Entities* project folder called *Student.cs* and set the content as shown in below.
@@ -156,12 +165,6 @@ want to run your application in a new development situation, the nuget will help
     		}
 		}
 
->Then put the following connectionStrings into *Web.config* file in *WebUI* project.(**Caution** I have to split  the value of *connectString* atrribute
-across mulitple lines to fit it on the limited page,but its important to put everything on a single line in the *Web.config* file)
-
-		<connectionStrings>
-    			<add name="TutorialEfDbContext" connectionString="Data Source=(localdb)\mssqllocaldb;Initial Catalog=TutorialEfDbContext;Integrated Security=True;MultipleActiveResultSets=True" providerName="System.Data.SqlClient" />
-  		</connectionStrings>
 
 >Last but not least, using **Migration** command to create database in sqlsever.Open the *Package Manager Console* dialog again and make sure the default project is *Domain*,
 and then successively execute the following commands.
@@ -332,3 +335,74 @@ You will see a dialog says *Reference Manager - WebAPI*, select Projects - Solut
 will use just like my code here, I will show the other types of binding later when we use or you can check them out in <a href="http://www.ninject.org/" target="_blank">Ninject</a>
 
 >### Using RESTful API
+
+>When using Web API, it's a simple task to create a RESTful web service. Web API uses controllers just like the MVC framework, but the action methods return C# data
+object rather than Razor views. Getting started is easy, to demonstrate how easy it is to get up and running, I right clicked the Controller folder in Web API Project,
+selected *Add* - *Controller* from the pop up menu, selected the *Web API2 Controller - Empty * template, and name it StudentsController.
+
+>**[Tip:]** There are two important namespaces in Web API development: **System.Net.Http** and **System.Web.Http**.
+Web API relies on an abstract model of HTTP requests and responses that is defined in **System.Net.Http**. The classes
+from this namespace that you will work with most often are HttpRequestMessage and HttpResponseMessage, which are
+used to represent an HTTP request from the client and the response that will be sent in return.
+
+>I used Constructor Dependency Injection in this controller, and created regions so that making the whole code clear and clean. The contents of StudentsController.cs is shown in below:
+
+>**[Code:]** The Contents of StudentsController.cs File
+
+    using System.Collections.Generic;
+    using System.Net;
+    using System.Net.Http;
+    using System.Web.Http;
+    using Domain.Abstract;
+    using Domain.Entities;
+
+    namespace WebAPI.Controllers
+    {
+    public class StudentsController : ApiController
+    {
+        #region Fields
+
+        private IStudentCrud _student;
+
+        #endregion
+
+        #region Constructor
+
+        public StudentsController(IStudentCrud student)
+        {
+            _student = student;
+        }
+        #endregion
+
+        #region SLP
+
+        public IEnumerable<Student> GetStudents()
+        {
+            return _student.GetAll();
+        }
+        public Student GetStudent(string id)
+        {
+            return _student.Get(id);
+        }
+
+        public bool PostStudent(Student student)
+        {
+            return _student.Add(student);
+        }
+
+        public bool DeleteStudent(string id)
+        {
+            return _student.Delete(id);
+        }
+
+        #endregion
+    }
+    }
+
+>Then I right clicked the WebAPI project, selected *Debug - Start new instance* from pop up menu. You will see the project is running and a new site opened in your default browser.
+And use the browser to request the following url: http://localhost:35081/api/students/conan **(you may have different port number in your situation, just replace my 35801 with yours number).**
+If everything is working correctly, then you will see the following response displayed in browser window.
+    <Student xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Domain.Entities" i:nil="true"/>
+
+>The response is an XML document that describes the Student from database, whose Id property corresponds to the one I specified in the url,
+since we don't create any data right now, its an empty node.
