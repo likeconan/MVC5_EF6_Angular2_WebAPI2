@@ -402,6 +402,7 @@ used to represent an HTTP request from the client and the response that will be 
 >Then I right clicked the WebAPI project, selected *Debug - Start new instance* from pop up menu. You will see the project is running and a new site opened in your default browser.
 And use the browser to request the following url: http://localhost:35081/api/students/conan **(you may have different port number in your situation, just replace my 35801 with yours number).**
 If everything is working correctly, then you will see the following response displayed in browser window.
+
     <Student xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Domain.Entities" i:nil="true"/>
 
 >The response is an XML document that describes the Student from database, whose Id property corresponds to the one I specified in the url,
